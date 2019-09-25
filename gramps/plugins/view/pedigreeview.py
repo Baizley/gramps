@@ -199,7 +199,12 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
                 # which is black (#000000000000)
                 tag = dbstate.db.get_tag_from_handle(tag_handle)
                 if tag.get_color() != "#000000000000": # only if the color
-                    self.bgcolor = tag.get_color()     # is not black
+                    rgba = Gdk.RGBA()
+                    rgba.parse(tag.get_color())
+                    value = '#%02x%02x%02x' % (int(rgba.red * 255),
+                                       int(rgba.green * 255),
+                                       int(rgba.blue * 255))
+                    self.bgcolor = value     # is not black
         self.bgcolor = hex_to_rgb_float(self.bgcolor)
         self.bordercolor = hex_to_rgb_float(self.bordercolor)
 
