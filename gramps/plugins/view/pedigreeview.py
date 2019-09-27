@@ -206,7 +206,7 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
                     value = '#%02x%02x%02x' % (int(rgba.red * 255),
                                        int(rgba.green * 255),
                                        int(rgba.blue * 255))
-                    if hexval != new_black:
+                    if value != new_black:
                         self.bgcolor = value     # is not black
         self.bgcolor = hex_to_rgb_float(self.bgcolor)
         self.bordercolor = hex_to_rgb_float(self.bordercolor)
