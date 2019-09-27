@@ -197,14 +197,17 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
             for tag_handle in person.get_tag_list():
                 # For the complete tag, don't modify the default color
                 # which is black (#000000000000)
+                old_black = "#000000000000" #self.__color on new tag
+                new_black = old_black[0:7]
                 tag = dbstate.db.get_tag_from_handle(tag_handle)
-                if tag.get_color() != "#000000000000": # only if the color
+                if tag.get_color() != old_black: # only if the color
                     rgba = Gdk.RGBA()
                     rgba.parse(tag.get_color())
                     value = '#%02x%02x%02x' % (int(rgba.red * 255),
                                        int(rgba.green * 255),
                                        int(rgba.blue * 255))
-                    self.bgcolor = value     # is not black
+                    if hexval != new_black:
+                        self.bgcolor = value     # is not black
         self.bgcolor = hex_to_rgb_float(self.bgcolor)
         self.bordercolor = hex_to_rgb_float(self.bordercolor)
 
