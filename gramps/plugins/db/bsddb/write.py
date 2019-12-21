@@ -795,8 +795,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         # name display formats
         self.name_formats = self.metadata.get(b'name_formats', default=[])
         # upgrade formats if they were saved in the old way
-        for format_ix in range(len(self.name_formats)):
-            format = self.name_formats[format_ix]
+        for format_ix, format in enumerate(self.name_formats):
             if len(format) == 3:
                 format = format + (True,)
                 self.name_formats[format_ix] = format

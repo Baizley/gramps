@@ -80,5 +80,9 @@ class TestArgParser(unittest.TestCase):
         ap = self.create_parser()
         assert not ap.auto_accept
 
+    def test_option_with_multiple_arguments(self):
+        argument_parser = self.create_parser('-l', 'family_tree_name')
+        self.assertEqual(argument_parser.database_names, ['family_tree_name'])
+
 if __name__ == "__main__":
     unittest.main()
